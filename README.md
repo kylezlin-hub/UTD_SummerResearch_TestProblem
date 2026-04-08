@@ -1,4 +1,4 @@
-This is a deep learning test problem from UTD summer research program. I was provided with an image dataset (vehicle_classification.zip) that contains 8 different classes of
+This is a deep learning test problem provided as part of the admission process for the UTD AI Lab summer internship program. (Update: I got selected!). I was provided with an image dataset (vehicle_classification.zip) that contains 8 different classes of
 vehicles:
 Bicycle, Bus, Car, Motorcycle, NonVehicles, Taxi, Truck, Van.
 The goal is to train a CNN that can classify these different types of vehicles.

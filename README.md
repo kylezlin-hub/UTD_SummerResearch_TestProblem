@@ -1,4 +1,4 @@
-This is a deep learning test problem provided as part of the admission process for the UTD AI Lab summer internship program. (Update: I got selected!). I was provided with an image dataset (vehicle_classification.zip) that contains 8 different classes of
+This is a deep learning test problem provided as part of the admission/selection process for UTD AI Lab research internship. (Update: I got selected!). I was provided with an image dataset (vehicle_classification.zip) that contains 8 different classes of
 vehicles:
 Bicycle, Bus, Car, Motorcycle, NonVehicles, Taxi, Truck, Van.
 The goal is to train a CNN that can classify these different types of vehicles.
@@ -32,3 +32,101 @@ Based on the test results above, I chose the second model as my submission code.
 
 <img width="1405" height="941" alt="image" src="https://github.com/user-attachments/assets/bafe7af3-add9-4837-823c-04beb331ad0a" />
 
+# Vehicle Classification (8 Classes)
+
+This repository trains a deep learning image classifier to identify 8 vehicle-related classes:
+- Bicycle
+- Bus
+- Car
+- Motorcycle
+- NonVehicles
+- Taxi
+- Truck
+- Van
+
+## Repository Contents
+- `model.py`: main training script with static matplotlib plots after training
+- `model_submit.py`: training script with live/interactive plotting during training (Jupyter-friendly)
+- `model_output_PlotAfterTraining.html`: exported report with training logs and post-training plots
+- `model_output_PlotDuringTraining.html`: exported report with per-epoch visual updates and final metrics
+
+## Dataset Summary
+
+The dataset is loaded using `torchvision.datasets.ImageFolder`
+Image counts per class:
+
+| Class | Images |
+|---|---:|
+| Bicycle | 1,618 |
+| Bus | 2,133 |
+| Car | 6,781 |
+| Motorcycle | 2,986 |
+| NonVehicles | 8,968 |
+| Taxi | 748 |
+| Truck | 2,033 |
+| Van | 1,111 |
+| **Total** | **26,378** |
+
+Train/test split in scripts:
+
+- Training: 80% (21,102 images)
+- Testing: 20% (5,276 images)
+
+## Model and Training Setup
+
+Model included as final submission to UTD:
+- `SimpleCNN2` (custom CNN with BatchNorm, ReLU, pooling, dropout)
+
+Training settings:
+- Input resolution: 64 x 64
+- Batch size: 32
+- Optimizer: Adam (`lr=0.001`)
+- Loss: CrossEntropyLoss
+- Maximum epochs: 50
+- Early stopping patience: 5 (monitored by validation loss on held-out test split)
+
+Data augmentation used:
+- Resize
+- Random horizontal flip
+- Random rotation (15 degrees)
+- Normalization
+
+Notes:
+- Pretrained EfficientNet-B0 and ResNet18 experiments are included as experimentations in the scripts.
+- Best model checkpoint is saved as `best_model.pth`.
+
+## Results
+
+Two exported runs are included:
+
+### Run A: Plot After Training
+
+Source report: `model_output_PlotAfterTraining.html`
+
+- Early stopping triggered after epoch 27
+- Test Accuracy: 84.12%
+- Train Accuracy: 87.58%
+
+### Run B: Plot During Training
+
+Source report: `model_output_PlotDuringTraining.html`
+
+- Early stopping triggered after epoch 26
+- Test Accuracy: 84.23%
+- Train Accuracy: 86.83%
+
+## Graphs and Report Artifacts
+The HTML artifacts are self-contained reports that include:
+- Epoch-by-epoch training logs
+- Loss curves (train vs validation)
+- Accuracy curves (train vs test)
+- Final reported train/test accuracy
+
+
+## Install dependencies
+```bash
+pip install torch torchvision matplotlib pandas numpy pillow ipython
+```
+
+## Reproducibility Notes
+- Final metrics can vary between runs due to random initialization, stochastic augmentation, and split randomness.
